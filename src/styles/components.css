@@ -1,0 +1,22 @@
+/* Components styles for the app */
+@layer components {
+  /* Horizontal nav: Ant Design uses primary underline on all items, including danger */
+  .ant-menu-horizontal > .ant-menu-item.ant-menu-item-danger:hover,
+  .ant-menu-horizontal
+    > .ant-menu-item.ant-menu-item-danger.ant-menu-item-active {
+    color: var(--color-danger);
+  }
+
+  .ant-menu-horizontal > .ant-menu-item.ant-menu-item-danger:hover .anticon,
+  .ant-menu-horizontal
+    > .ant-menu-item.ant-menu-item-danger.ant-menu-item-active
+    .anticon {
+    color: var(--color-danger);
+  }
+
+  .ant-menu-horizontal > .ant-menu-item.ant-menu-item-danger:hover::after,
+  .ant-menu-horizontal
+    > .ant-menu-item.ant-menu-item-danger.ant-menu-item-active::after {
+    border-bottom-color: var(--color-danger) !important;
+  }
+}

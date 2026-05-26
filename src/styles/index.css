@@ -1,0 +1,6 @@
+/* Index styles for the app */
+@import "tailwindcss";
+@config "../../tailwind.config.ts";
+@import "./base.css";
+@import "./components.css";
+@import "./utilities.css";

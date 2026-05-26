@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Button > create snapshot 1`] = `"<button type="button" class="ant-btn css-dev-only-do-not-override-ypkju9 css-var-_r_2_ ant-btn-default ant-btn-color-default ant-btn-variant-outlined"><span>Click me</span></button>"`;
+
+exports[`Button > creates button snapshot 1`] = `"<button type="button" class="ant-btn css-dev-only-do-not-override-ypkju9 css-var-_r_2_ ant-btn-default ant-btn-color-default ant-btn-variant-outlined"><span>Click me</span></button>"`;
+
+exports[`Button > creates snapshot 1`] = `"<button type="button" class="ant-btn css-dev-only-do-not-override-ypkju9 css-var-_r_2_ ant-btn-default ant-btn-color-default ant-btn-variant-outlined"><span>Click me</span></button>"`;
