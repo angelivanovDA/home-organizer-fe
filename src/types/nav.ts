@@ -8,17 +8,17 @@
  */
 export type NavIconKey = "home" | "dashboard" | "login" | "signup" | "logout";
 
-/** The navigation item configuration. 
+/** The navigation item configuration.
  * @property id - The id of the navigation item.
  * @property text - The text of the navigation item.
  * @property link - The link of the navigation item.
  * @property auth - Whether the navigation item is only visible for authenticated users.
  * @property icon - The icon of the navigation item.
-*/
+ */
 export interface NavItemConfig {
-    id: string;
-    text: string;
-    link: string;
-    auth: boolean;
-    icon: NavIconKey;
+  id: string;
+  text: string;
+  link: string;
+  auth: boolean;
+  icon: NavIconKey;
 }

@@ -62,5 +62,8 @@ function Input({
   );
 }
 
-export type { InputProps, InputType } from "@/components/FormElements/Input/types";
+export type {
+  InputProps,
+  InputType,
+} from "@/components/FormElements/Input/types";
 export default Input;

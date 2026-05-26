@@ -5,4 +5,3 @@ export const ROUTES = {
   DASHBOARD: "/dashboard",
   POST: "/:postId",
 } as const;
-

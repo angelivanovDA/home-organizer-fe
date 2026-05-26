@@ -24,11 +24,11 @@ export default defineConfig(({ mode }) => {
       }),
       tailwindcss(),
       analyze &&
-      visualizer({
-        filename: "dist/stats.html",
-        gzipSize: true,
-        open: true,
-      }),
+        visualizer({
+          filename: "dist/stats.html",
+          gzipSize: true,
+          open: true,
+        }),
     ].filter(Boolean),
     resolve: {
       alias: {
