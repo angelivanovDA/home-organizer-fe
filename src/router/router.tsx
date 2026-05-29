@@ -10,6 +10,8 @@ import SinglePostPage from "@/pages/SinglePost/SinglePost";
 import { ROUTES } from "@/constants/routesConstants";
 import type { AuthRouteContext } from "@/types";
 
+/** The public route configuration. */
+/** @param ctx - The authentication context. */
 const publicRouteConfig = (ctx: AuthRouteContext): RouteObject[] => [
   {
     path: ROUTES.HOME,
@@ -25,6 +27,8 @@ const publicRouteConfig = (ctx: AuthRouteContext): RouteObject[] => [
   },
 ];
 
+/** The private route configuration. */
+/** @param ctx - The authentication context. */
 const privateRouteConfig = (ctx: AuthRouteContext): RouteObject[] => [
   {
     path: ROUTES.HOME,
@@ -40,11 +44,15 @@ const privateRouteConfig = (ctx: AuthRouteContext): RouteObject[] => [
   },
 ];
 
+/** The route configuration. */
+/** @param ctx - The authentication context. */
 const getRouteConfig = (ctx: AuthRouteContext): RouteObject[] => {
   const isAuthenticated = Boolean(ctx.isAuth && ctx.token && ctx.userId);
   return isAuthenticated ? privateRouteConfig(ctx) : publicRouteConfig(ctx);
 };
 
+/** The AppRoutes component. */
+/** @param props - The authentication context. */
 export function AppRoutes(props: AuthRouteContext) {
   return useRoutes(getRouteConfig(props));
 }

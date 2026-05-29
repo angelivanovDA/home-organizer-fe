@@ -25,7 +25,7 @@ Web client for **Home Organizer**, a household app for sharing updates, coordina
 
 - Node.js 20+ (LTS recommended)
 - Yarn or npm
-- Backend API running (see `API_PROXY_TARGET` below)
+- Backend API running only when mocks are disabled (see `VITE_ENABLE_MOCK_API` below)
 
 ## Getting started
 
@@ -48,15 +48,31 @@ Web client for **Home Organizer**, a household app for sharing updates, coordina
    yarn dev
    ```
 
-   In development, leave `VITE_API_URL` empty to use the Vite proxy to the backend (`API_PROXY_TARGET`, default `http://localhost:3000`).
+   With `VITE_ENABLE_MOCK_API=true` (default in `.env.development`), no backend is required. Log in with **`demo@example.com`** / **`password123`**.
+
+## Mock API (MSW)
+
+The app uses [Mock Service Worker](https://mswjs.io/) to intercept real `fetch` calls at the network layer. Your UI code stays unchanged; handlers in `src/mocks/handlers/` define the API contract while you build the frontend.
+
+| Path                       | Purpose                                      |
+| -------------------------- | -------------------------------------------- |
+| `src/mocks/handlers/`      | Request handlers (auth, feed, user, uploads) |
+| `src/mocks/data/seed.ts`   | Demo users and posts                         |
+| `src/mocks/db.ts`          | In-memory store (resets between tests)       |
+| `src/mocks/postsSocket.ts` | Real-time post events when mocks are on      |
+
+To use a real backend instead, set `VITE_ENABLE_MOCK_API=false` in `.env.development` and start your API (`API_PROXY_TARGET`, default `http://localhost:3000`).
+
+After upgrading MSW, regenerate the worker: `npx msw init public/ --save`.
 
 ## Environment variables
 
-| Variable           | Description                                                                          |
-| ------------------ | ------------------------------------------------------------------------------------ |
-| `VITE_API_URL`     | API base URL for the browser. Empty in dev (same-origin + proxy). Set in production. |
-| `VITE_DEV_PORT`    | Dev server port (default `4000`).                                                    |
-| `API_PROXY_TARGET` | Backend URL for the Vite dev proxy only.                                             |
+| Variable               | Description                                                                          |
+| ---------------------- | ------------------------------------------------------------------------------------ |
+| `VITE_API_URL`         | API base URL for the browser. Empty in dev (same-origin + proxy). Set in production. |
+| `VITE_ENABLE_MOCK_API` | When `true`, MSW serves `/api/*` and mock WebSocket post events.                     |
+| `VITE_DEV_PORT`        | Dev server port (default `4000`).                                                    |
+| `API_PROXY_TARGET`     | Backend URL for the Vite dev proxy (when mocks are off).                             |
 
 ## Scripts
 
@@ -80,6 +96,7 @@ Git hooks (Husky): **pre-commit** runs `lint-staged` on staged files; **pre-push
 src/
   components/   # Shared UI (layout, forms, navigation, etc.)
   constants/    # Routes and navigation config
+  mocks/        # MSW handlers, seed data, mock socket events
   pages/        # Route-level screens (Home, Login, Dashboard, …)
   router/       # Route definitions
   types/        # Shared TypeScript types
